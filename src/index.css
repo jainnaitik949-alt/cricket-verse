@@ -1,0 +1,117 @@
+@import "tailwindcss";
+
+@layer base {
+  :root,
+  .dark-theme {
+    --bg-primary: #0B0F19;
+    --bg-secondary: #111827;
+    --bg-card: #151F32;
+    --bg-card-hover: #1C2A44;
+    --bg-elevated: #1F2D48;
+    
+    --border-subtle: #22324C;
+    --border-accent: rgba(16, 185, 129, 0.4);
+
+    --text-primary: #FFFFFF;
+    --text-secondary: #CBD5E1;
+    --text-muted: #8E9FB5;
+
+    --cricket-emerald: #10B981;
+    --cricket-emerald-hover: #059669;
+    --cricket-lime: #84CC16;
+    --cricket-lime-glow: #A3E635;
+    --cricket-gold: #F59E0B;
+    --cricket-ruby: #EF4444;
+
+    --badge-bg: #1B2942;
+    --glass-bg: rgba(11, 15, 25, 0.88);
+  }
+
+  .light-theme {
+    --bg-primary: #F8FAFC;
+    --bg-secondary: #FFFFFF;
+    --bg-card: #FFFFFF;
+    --bg-card-hover: #F1F5F9;
+    --bg-elevated: #F8FAFC;
+
+    --border-subtle: #E2E8F0;
+    --border-accent: rgba(16, 185, 129, 0.5);
+
+    --text-primary: #0F172A;
+    --text-secondary: #334155;
+    --text-muted: #64748B;
+
+    --cricket-emerald: #059669;
+    --cricket-emerald-hover: #047857;
+    --cricket-lime: #65A30D;
+    --cricket-lime-glow: #4D7C0F;
+    --cricket-gold: #D97706;
+    --cricket-ruby: #DC2626;
+
+    --badge-bg: #E2E8F0;
+    --glass-bg: rgba(255, 255, 255, 0.92);
+  }
+
+  body {
+    font-family: 'Inter', sans-serif;
+    background-color: var(--bg-primary);
+    color: var(--text-primary);
+    overflow-x: hidden;
+    transition: background-color 0.25s ease, color 0.25s ease;
+  }
+
+  h1, h2, h3, .font-heading {
+    font-family: 'Bebas Neue', sans-serif;
+    letter-spacing: 0.04em;
+  }
+
+  .font-subheading {
+    font-family: 'Oswald', sans-serif;
+    letter-spacing: 0.025em;
+  }
+}
+
+/* Theme utility classes */
+.bg-theme-primary { background-color: var(--bg-primary); }
+.bg-theme-secondary { background-color: var(--bg-secondary); }
+.bg-theme-card { background-color: var(--bg-card); }
+.bg-theme-card-hover:hover { background-color: var(--bg-card-hover); }
+.bg-theme-elevated { background-color: var(--bg-elevated); }
+
+.text-theme-primary { color: var(--text-primary); }
+.text-theme-secondary { color: var(--text-secondary); }
+.text-theme-muted { color: var(--text-muted); }
+
+.border-theme-subtle { border-color: var(--border-subtle); }
+.border-theme-accent { border-color: var(--border-accent); }
+
+.text-cricket-emerald { color: var(--cricket-emerald); }
+.text-cricket-lime { color: var(--cricket-lime); }
+.text-cricket-gold { color: var(--cricket-gold); }
+
+.bg-cricket-emerald { background-color: var(--cricket-emerald); }
+.bg-cricket-emerald:hover { background-color: var(--cricket-emerald-hover); }
+
+/* Glow & Lighting accents */
+.stadium-glow-emerald {
+  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.25);
+}
+.stadium-glow-gold {
+  box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.22);
+}
+
+/* Custom scrollbar */
+::-webkit-scrollbar {
+  width: 7px;
+  height: 7px;
+}
+::-webkit-scrollbar-track {
+  background: var(--bg-primary);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--border-subtle);
+  border-radius: 4px;
+}
+::-webkit-scrollbar-thumb:hover {
+  background: var(--cricket-emerald);
+}

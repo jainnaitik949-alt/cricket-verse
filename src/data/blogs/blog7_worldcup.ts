@@ -1,0 +1,88 @@
+import { BlogArticle } from '../../types';
+
+export const blog7WorldCup: BlogArticle = {
+  id: 'blog-7',
+  slug: 'icc-cricket-world-cup',
+  title: 'The ICC Cricket World Cup — History, Format, and Iconic Moments',
+  subtitle: 'Five decades of high drama, underdog miracles, Australian dynasties, and unforgettable finals in cricket’s premier tournament',
+  excerpt: 'A comprehensive history of the men’s 50-over ICC Cricket World Cup: from the 60-over white-clothed clashes of 1975 to India’s 1983 miracle, the 1992 color revolution, Australia’s six crowns, and the heart-stopping 2019 final.',
+  category: 'International Cricket',
+  tags: ['ICC Cricket World Cup', 'World Cup History', 'Lord’s', 'Kapil Dev 1983', 'Australia Dynasty', 'World Cup Champions'],
+  author: {
+    name: 'Marcus Sterling',
+    role: 'ICC Tournament Historian & Feature Writer',
+    avatar: 'https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?auto=format&fit=crop&w=200&q=80',
+  },
+  publishedDate: '2025-02-24',
+  lastVerifiedDate: '2025-11-20',
+  readTimeMinutes: 11,
+  coverImage: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=1600&q=80',
+  coverImageAlt: 'Packed cricket stadium with floodlights glowing under an evening sky',
+  coverImageCaption: 'The ultimate summit: Staged every four years, the ICC Men’s Cricket World Cup remains the most coveted prize in one-day cricket.',
+  introduction: 'Every four years, the cricketing world converges for its definitive spectacle: the ICC Men’s Cricket World Cup. Born in the English summer of 1975 as a 60-overs-per-side novelty played in traditional white flannels, the tournament has grown into an international cultural powerhouse watched by billions. It is the crucible where careers are immortalized, dynasties are forged, and national legends are etched into eternity.',
+  sections: [
+    {
+      id: 'inaugural-era-west-indies',
+      title: '1. The Prudential Years and Caribbean Hegemony (1975–1979)',
+      content: 'The first men’s Cricket World Cup was staged in England in June 1975, sponsored by the Prudential Assurance Company. Eight teams contested 60-over matches using red balls and white clothing. In the inaugural final at Lord’s, Clive Lloyd struck a majestic 102 to lead the West Indies to a 17-run victory over Ian Chappell’s Australia.\n\nFour years later in 1979, the West Indies repeated the feat at Lord’s, propelled by Sir Vivian Richards’ thunderous 138* and Collis King’s ferocious 86 against England. With their terrifying battery of fast bowlers—Andy Roberts, Michael Holding, Colin Croft, and Joel Garner—the West Indies appeared completely invincible.',
+    },
+    {
+      id: '1983-revolution',
+      title: '2. The 1983 Turning Point: Kapil Dev and India’s Lord’s Miracle',
+      content: 'The 1983 tournament altered the geopolitical trajectory of the sport forever. Entering the tournament with pre-tournament bookmaker odds of 66-1, Kapil Dev’s underdog Indian squad defied all expectations. In a pivotal group match at Tunbridge Wells, Kapil rescinded disaster from 17/5 by smashing an astonishing 175* against Zimbabwe.\n\nIn the June 25 final at Lord’s, India were bundled out for a meager 183 against the mighty two-time champions. Yet, through disciplined medium-pace bowling by Mohinder Amarnath and Madan Lal, and Kapil’s miraculous running backward catch to dismiss a rampaging Viv Richards, India bowled the West Indies out for 140. The upset sent shockwaves through the sporting world, creating the commercial boom that established India as cricket’s economic engine.',
+    },
+    {
+      id: '1987-1992-evolution',
+      title: '3. Globalization, 50 Overs, and the 1992 Colored Revolution',
+      content: 'In 1987, the World Cup moved outside England for the first time, co-hosted by India and Pakistan as the Reliance World Cup. Match lengths were permanently standardized from 60 to 50 overs per side, and Allan Border’s Australia clinched their maiden title by 7 runs over England at Eden Gardens in Kolkata.\n\nThe 1992 edition in Australia and New Zealand ushered in the modern television era: colored team clothing, white balls, black sight-screens, and Day-Night matches under towering floodlights. Under Imran Khan’s inspirational leadership, Pakistan rebounded from the brink of group-stage elimination ("fighting like cornered tigers") to conquer England in the Melbourne final.',
+    },
+    {
+      id: 'australian-dynasty',
+      title: '4. The Australian Golden Dynasty (1999–2007)',
+      content: 'Between 1999 and 2007, Australia produced the most dominant period in World Cup history, stringing together an unprecedented 29 consecutive World Cup match victories without defeat:\n\n• 1999 (England): Under Steve Waugh, Australia survived a legendary tied semi-final against South Africa at Edgbaston before crushing Pakistan by 8 wickets in the final.\n• 2003 (South Africa): Ricky Ponting led an undefeated campaign, punctuated by his brutal 140* in the final against India in Johannesburg.\n• 2007 (West Indies): Australia completed an undefeated three-peat in Barbados, spearheaded by Adam Gilchrist’s 149 against Sri Lanka, using a squash ball tucked inside his batting glove for enhanced bottom-hand grip.',
+    },
+    {
+      id: 'world-cup-winners-table',
+      title: '5. Complete List of ICC Men’s Cricket World Cup Champions',
+      content: 'Thirteen editions of the men’s 50-over World Cup have been staged across five decades:',
+      table: {
+        caption: 'All ICC Men’s Cricket World Cup Champions (1975–2023)',
+        headers: ['Year', 'Host Nation(s)', 'Winner', 'Runner-Up', 'Final Margin', 'Player of the Tournament/Final'],
+        rows: [
+          ['1975', 'England', 'West Indies', 'Australia', 'Won by 17 runs', 'Clive Lloyd (Final MoM)'],
+          ['1979', 'England', 'West Indies', 'England', 'Won by 92 runs', 'Vivian Richards (Final MoM)'],
+          ['1983', 'England', 'India', 'West Indies', 'Won by 43 runs', 'Mohinder Amarnath (Final MoM)'],
+          ['1987', 'India & Pakistan', 'Australia', 'England', 'Won by 7 runs', 'David Boon (Final MoM)'],
+          ['1992', 'Australia & NZ', 'Pakistan', 'England', 'Won by 22 runs', 'Martin Crowe (PoT) / Wasim Akram (MoM)'],
+          ['1996', 'India, Pak, Sri Lanka', 'Sri Lanka', 'Australia', 'Won by 7 wickets', 'Sanath Jayasuriya (PoT) / Aravinda de Silva (MoM)'],
+          ['1999', 'England & UK', 'Australia', 'Pakistan', 'Won by 8 wickets', 'Lance Klusener (PoT) / Shane Warne (MoM)'],
+          ['2003', 'South Africa & Zim', 'Australia', 'India', 'Won by 125 runs', 'Sachin Tendulkar (PoT) / Ricky Ponting (MoM)'],
+          ['2007', 'West Indies', 'Australia', 'Sri Lanka', 'Won by 53 runs (DLS)', 'Glenn McGrath (PoT) / Adam Gilchrist (MoM)'],
+          ['2011', 'India, Sri Lanka, BD', 'India', 'Sri Lanka', 'Won by 6 wickets', 'Yuvraj Singh (PoT) / MS Dhoni (MoM)'],
+          ['2015', 'Australia & NZ', 'Australia', 'New Zealand', 'Won by 7 wickets', 'Mitchell Starc (PoT) / James Faulkner (MoM)'],
+          ['2019', 'England & Wales', 'England', 'New Zealand', 'Tied (Super Over tied; boundaries)', 'Kane Williamson (PoT) / Ben Stokes (MoM)'],
+          ['2023', 'India', 'Australia', 'India', 'Won by 6 wickets', 'Virat Kohli (PoT) / Travis Head (MoM)'],
+        ],
+      },
+    },
+    {
+      id: 'modern-epics',
+      title: '6. The Modern Epics: 2011, 2019, and 2023',
+      content: 'The 2011 World Cup witnessed India become the first host country in history to lift the trophy on home soil, culminating in MS Dhoni’s historic six over long-on in Mumbai.\n\nThe 2019 final at Lord’s between England and New Zealand produced what is universally hailed as the most dramatic cricket match ever played. After 50 overs each, the scores were tied at 241. A one-over Super Over also finished deadlocked at 15 runs apiece. Under the tournament playing conditions in force at the time, England were awarded the trophy on a boundary countback (26 boundaries to 17)—a regulation subsequently discontinued by the ICC.\n\nIn 2023, host nation India dominated the tournament with 10 consecutive victories, only for Pat Cummins’ disciplined Australia to silence 100,000 home fans at Narendra Modi Stadium in Ahmedabad, claiming Australia’s record-extending sixth World Cup title on the back of Travis Head’s magnificent 137.',
+    },
+  ],
+  keyTakeaways: [
+    'Australia is the most successful nation in World Cup history, having won 6 titles (1987, 1999, 2003, 2007, 2015, 2023).',
+    'India (1983, 2011) and West Indies (1975, 1979) have won 2 titles each.',
+    'Pakistan (1992), Sri Lanka (1996), and England (2019) have won 1 title each.',
+    'India’s 1983 upset over the West Indies revolutionized cricket’s commercial and cultural popularity across Asia.',
+    'The tournament transitioned from 60 overs in white clothing (1975–1983) to 50 overs with colored clothing and floodlights (1992 onwards).',
+    'The 2019 final at Lord’s was the first World Cup final decided by a Super Over.',
+  ],
+  conclusion: 'The ICC Men’s Cricket World Cup remains the holy grail of international one-day cricket. Through five decades of evolving tactics, shifting power centers, and breathtaking athletic heroics, the tournament captures the very essence of sportsmanship and national honor.',
+  sources: [
+    { title: 'International Cricket Council — Men’s Cricket World Cup Official Records', url: 'https://www.icc-cricket.com/tournaments/cricketworldcup' },
+    { title: 'Wisden Cricketers’ Almanack — Complete World Cup History and Scorecards', url: 'https://www.wisden.com' },
+  ],
+  relatedBlogSlugs: ['sachin-tendulkar', 'ms-dhoni', 'virat-kohli'],
+};
