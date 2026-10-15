@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Trophy, Info } from 'lucide-react';
 import { TournamentCard } from '../components/TournamentCard';
 import { SEOHead } from '../components/SEOHead';
+import { SEOPageBadge } from '../components/SEOPageBadge';
 import { tournamentsData } from '../data/tournamentsData';
 
 export const TournamentsPage: React.FC = () => {
@@ -22,24 +23,34 @@ export const TournamentsPage: React.FC = () => {
       : tournamentsData.filter((t) => t.category === selectedCategory);
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] py-12 transition-colors">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] py-8 transition-colors">
       <SEOHead
-        title="Major Cricket Tournaments & Championships"
-        description="Explore the premier tournaments in world cricket: ICC Men’s and Women’s World Cups, T20 World Cups, World Test Championship, and the Indian Premier League."
+        title="International Cricket Tournaments & Guides | CricketVerse"
+        description="Discover international cricket tournaments, relive the ICC Cricket World Cup, and understand IPL tournament structure, auction strategies, and playoff rules."
+        mainKeyword="international cricket tournaments"
+        relatedKeywords={['ICC Cricket World Cup', 'IPL tournament structure']}
+        aeoQuestion="What are the premier tournaments in world cricket?"
+        aeoAnswer="The premier global tournaments include the ICC Men’s ODI World Cup, ICC Men’s T20 World Cup, ICC World Test Championship, and the Indian Premier League (IPL)."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {/* Header */}
+      {/* Transparent SEO & AEO Target Inspector */}
+      <SEOPageBadge />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 mt-4">
+        {/* Header with AEO Question & Answer */}
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 text-xs font-bold text-[var(--cricket-emerald)] tracking-wider uppercase">
             <Trophy className="w-4 h-4 text-amber-400" />
             <span>Global Championship Center</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-[var(--text-primary)]">
-            Major Cricket Tournaments
+            International Tournaments & Franchise Leagues
           </h1>
-          <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl leading-relaxed">
-            The definitive reference to cricket’s greatest competitive arenas: from century-old Test championships and quadrennial 50-over World Cups to modern T20 franchise spectacles.
+          <h2 className="font-heading text-2xl sm:text-3xl text-[var(--cricket-emerald)]">
+            What Major Tournaments Define Modern International Cricket?
+          </h2>
+          <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-3xl leading-relaxed">
+            Modern international cricket is anchored by four premier global events: the quadrennial ICC Men’s and Women’s ODI World Cups, the fast-paced ICC T20 World Cups, the elite two-year ICC World Test Championship cycle, and the blockbuster Indian Premier League (IPL) franchise tournament.
           </p>
         </div>
 
@@ -51,7 +62,7 @@ export const TournamentsPage: React.FC = () => {
               Data Integrity & Fixtures Architecture Notice
             </p>
             <p className="leading-relaxed">
-              CricketVerse strictly catalogs verified historical championship records and tournament formats. In accordance with PRD guidelines, we do not fabricate live scores, ongoing match status, or speculative league tables. Future real-time score feeds will interface via verified sports data APIs with official timestamps.
+              CricketVerse strictly catalogs verified historical championship records and tournament formats. In accordance with editorial standards, we do not fabricate live scores, ongoing match status, or speculative league tables. Future real-time score feeds will interface via verified sports data APIs with official timestamps.
             </p>
           </div>
         </div>
@@ -64,7 +75,8 @@ export const TournamentsPage: React.FC = () => {
               <button
                 key={cat}
                 onClick={() => setSelectedCategory(cat)}
-                className={`px-4 py-2 text-xs font-bold rounded-xl transition-all ${
+                aria-label={`Filter tournaments by category: ${cat}`}
+                className={`px-4 py-2 text-xs font-bold rounded-xl transition-all cursor-pointer ${
                   isActive
                     ? 'bg-[var(--cricket-emerald)] text-white shadow-md shadow-emerald-600/30'
                     : 'bg-[var(--bg-card)] hover:bg-[var(--bg-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)]'

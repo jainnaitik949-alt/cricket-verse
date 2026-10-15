@@ -6,9 +6,11 @@ import {
   X,
   ShieldCheck,
   ChevronRight,
+  ExternalLink,
 } from 'lucide-react';
 import { PlayerCard } from '../components/PlayerCard';
 import { SEOHead } from '../components/SEOHead';
+import { SEOPageBadge } from '../components/SEOPageBadge';
 import { playersData } from '../data/playersData';
 import { PlayerProfile } from '../types';
 
@@ -36,24 +38,34 @@ export const PlayerProfilesPage: React.FC = () => {
   }, [searchQuery, selectedRole, selectedCountry]);
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] py-12 transition-colors">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] py-8 transition-colors">
       <SEOHead
-        title="Legendary Cricket Players Directory"
-        description="Explore in-depth player profiles, career statistics, and verified records for cricket legends including Sachin Tendulkar, Virat Kohli, MS Dhoni, and Sir Donald Bradman."
+        title="Cricket Legends Biographies & Stats | CricketVerse"
+        description="Explore cricket legends biographies, analyze the greatest cricket players of all time, and examine verified cricket career stats from Bradman to Virat Kohli."
+        mainKeyword="cricket legends biographies"
+        relatedKeywords={['greatest cricket players', 'cricket career stats']}
+        aeoQuestion="Who are considered the greatest legends in cricket history?"
+        aeoAnswer="Sir Donald Bradman with his 99.94 Test average, Sachin Tendulkar with 100 international centuries, and MS Dhoni who won all three ICC white-ball trophies lead cricket history."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {/* Header */}
+      {/* Transparent SEO & AEO Target Inspector */}
+      <SEOPageBadge />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 mt-4">
+        {/* Header with AEO Question & Answer */}
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 text-xs font-bold text-[var(--cricket-emerald)] tracking-wider uppercase">
             <Award className="w-4 h-4" />
             <span>Cricket Hall of Fame Directory</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-[var(--text-primary)]">
-            Legendary Players Directory
+            Cricket Hall of Fame: Player Biographies & Career Records
           </h1>
-          <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl leading-relaxed">
-            Discover the immortals of cricket. Examine verified records, tactical roles, and career breakdowns across eras of international competition.
+          <h2 className="font-heading text-2xl sm:text-3xl text-[var(--cricket-emerald)]">
+            Who Are the Greatest Cricket Legends Featured in Our Hall of Fame?
+          </h2>
+          <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-3xl leading-relaxed">
+            Cricket history is illuminated by titans including Sachin Tendulkar with 100 international centuries, Virat Kohli with his relentless chase records, MS Dhoni who won all three ICC white-ball trophies, and Sir Donald Bradman who achieved an unassailable 99.94 Test average. Discover their verified milestones below.
           </p>
         </div>
 
@@ -68,6 +80,7 @@ export const PlayerProfilesPage: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search player name, nickname..."
+                aria-label="Search cricket players by name or nickname"
                 className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl pl-10 pr-4 py-3 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--cricket-emerald)]"
               />
             </div>
@@ -78,6 +91,7 @@ export const PlayerProfilesPage: React.FC = () => {
               <select
                 value={selectedRole}
                 onChange={(e) => setSelectedRole(e.target.value)}
+                aria-label="Filter players by tactical role"
                 className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] text-xs font-bold text-[var(--text-primary)] rounded-xl px-3 py-3 focus:outline-none focus:border-[var(--cricket-emerald)] cursor-pointer"
               >
                 {roles.map((r) => (
@@ -94,6 +108,7 @@ export const PlayerProfilesPage: React.FC = () => {
               <select
                 value={selectedCountry}
                 onChange={(e) => setSelectedCountry(e.target.value)}
+                aria-label="Filter players by international country"
                 className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] text-xs font-bold text-[var(--text-primary)] rounded-xl px-3 py-3 focus:outline-none focus:border-[var(--cricket-emerald)] cursor-pointer"
               >
                 {countries.map((c) => (
@@ -117,7 +132,8 @@ export const PlayerProfilesPage: React.FC = () => {
                   setSelectedRole('All');
                   setSelectedCountry('All');
                 }}
-                className="text-[var(--cricket-emerald)] hover:underline font-bold flex items-center gap-1"
+                aria-label="Reset all player filters"
+                className="text-[var(--cricket-emerald)] hover:underline font-bold flex items-center gap-1 cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" />
                 <span>Reset Filters</span>
@@ -152,15 +168,17 @@ export const PlayerProfilesPage: React.FC = () => {
             <div className="relative aspect-[21/9] sm:aspect-[24/9] bg-[var(--bg-secondary)] overflow-hidden shrink-0">
               <img
                 src={activeModalPlayer.image}
-                alt={activeModalPlayer.name}
+                alt={`Full portrait of cricket legend ${activeModalPlayer.name}`}
+                loading="lazy"
+                decoding="async"
                 className="w-full h-full object-cover object-top"
               />
               <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-card)] via-[var(--bg-card)]/60 to-transparent" />
 
               <button
                 onClick={() => setActiveModalPlayer(null)}
-                className="absolute top-4 right-4 p-2.5 bg-black/70 text-white rounded-xl hover:bg-black transition-colors"
-                aria-label="Close modal"
+                aria-label="Close player biography modal"
+                className="absolute top-4 right-4 p-2 rounded-xl bg-black/60 hover:bg-black/90 text-white transition-colors cursor-pointer"
               >
                 <X className="w-5 h-5" />
               </button>
@@ -168,97 +186,90 @@ export const PlayerProfilesPage: React.FC = () => {
               <div className="absolute bottom-4 left-6 right-6 flex items-end justify-between">
                 <div>
                   <div className="flex items-center gap-2 mb-1">
-                    <span className="text-2xl">{activeModalPlayer.countryFlag}</span>
-                    <span className="text-xs bg-[var(--cricket-emerald)] text-white px-2.5 py-0.5 rounded-lg font-bold">
-                      {activeModalPlayer.primaryRole}
+                    <span className="text-2xl" role="img" aria-label={activeModalPlayer.country}>{activeModalPlayer.countryFlag}</span>
+                    <span className="text-xs font-bold text-[var(--cricket-emerald)] uppercase tracking-wider">
+                      {activeModalPlayer.country} · {activeModalPlayer.careerSpan}
                     </span>
                   </div>
-                  <h3 className="font-heading text-3xl sm:text-4xl text-[var(--text-primary)]">
-                    {activeModalPlayer.fullName}
+                  <h3 className="font-heading text-3xl sm:text-4xl text-[var(--text-primary)] leading-none">
+                    {activeModalPlayer.name}
                   </h3>
-                  <p className="text-xs text-[var(--cricket-emerald)] font-bold">
-                    Career Span: {activeModalPlayer.careerSpan}
-                  </p>
+                  {activeModalPlayer.nickname && (
+                    <p className="text-xs text-[var(--text-muted)] italic mt-0.5">"{activeModalPlayer.nickname}"</p>
+                  )}
                 </div>
               </div>
             </div>
 
             {/* Modal Body */}
-            <div className="p-6 overflow-y-auto space-y-6 text-xs sm:text-sm text-[var(--text-secondary)]">
-              {/* Bio & Styles */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4 p-4 bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-2xl">
-                <div>
-                  <span className="text-[var(--text-muted)] text-[11px] uppercase block font-bold">Batting Style</span>
-                  <span className="text-[var(--text-primary)] font-bold text-xs">{activeModalPlayer.battingStyle}</span>
-                </div>
-                {activeModalPlayer.bowlingStyle && (
-                  <div>
-                    <span className="text-[var(--text-muted)] text-[11px] uppercase block font-bold">Bowling Style</span>
-                    <span className="text-[var(--text-primary)] font-bold text-xs">{activeModalPlayer.bowlingStyle}</span>
-                  </div>
-                )}
-                <div>
-                  <span className="text-[var(--text-muted)] text-[11px] uppercase block font-bold">Born</span>
-                  <span className="text-[var(--text-primary)] font-bold text-xs">{activeModalPlayer.born}</span>
-                </div>
-                {activeModalPlayer.nickname && (
-                  <div>
-                    <span className="text-[var(--text-muted)] text-[11px] uppercase block font-bold">Nickname</span>
-                    <span className="text-[var(--cricket-emerald)] font-bold text-xs">{activeModalPlayer.nickname}</span>
-                  </div>
-                )}
-              </div>
-
-              {/* Career Overview */}
+            <div className="p-6 sm:p-8 overflow-y-auto space-y-6">
+              {/* Overview */}
               <div>
-                <h4 className="font-heading text-2xl text-[var(--text-primary)] mb-2">Career Retrospective</h4>
-                <p className="leading-relaxed">
+                <h4 className="font-heading text-xl text-[var(--text-primary)] mb-2">Career Overview</h4>
+                <p className="text-sm text-[var(--text-secondary)] leading-relaxed">
                   {activeModalPlayer.overview}
                 </p>
               </div>
 
-              {/* Major Achievements */}
-              <div>
-                <h4 className="font-heading text-2xl text-[var(--text-primary)] mb-2 flex items-center gap-1.5">
-                  <Award className="w-4 h-4 text-amber-400" />
-                  <span>Major Career Honours</span>
-                </h4>
-                <ul className="space-y-1.5 pl-4 list-disc text-xs text-[var(--text-primary)]">
-                  {activeModalPlayer.majorAchievements.map((ach, i) => (
-                    <li key={i}>{ach}</li>
-                  ))}
-                </ul>
+              {/* Technical Specifications */}
+              <div className="grid grid-cols-2 sm:grid-cols-3 gap-3">
+                <div className="p-3 bg-[var(--bg-elevated)] rounded-xl border border-[var(--border-subtle)]">
+                  <span className="text-[10px] text-[var(--text-muted)] uppercase font-bold block">Primary Role</span>
+                  <span className="text-xs text-[var(--text-primary)] font-bold">{activeModalPlayer.primaryRole}</span>
+                </div>
+                <div className="p-3 bg-[var(--bg-elevated)] rounded-xl border border-[var(--border-subtle)]">
+                  <span className="text-[10px] text-[var(--text-muted)] uppercase font-bold block">Batting Style</span>
+                  <span className="text-xs text-[var(--text-primary)] font-bold">{activeModalPlayer.battingStyle}</span>
+                </div>
+                <div className="p-3 bg-[var(--bg-elevated)] rounded-xl border border-[var(--border-subtle)]">
+                  <span className="text-[10px] text-[var(--text-muted)] uppercase font-bold block">Bowling Style</span>
+                  <span className="text-xs text-[var(--text-primary)] font-bold">{activeModalPlayer.bowlingStyle}</span>
+                </div>
               </div>
 
               {/* Verified Records */}
-              <div>
-                <h4 className="font-heading text-2xl text-[var(--text-primary)] mb-2 flex items-center gap-1.5">
-                  <ShieldCheck className="w-4 h-4 text-[var(--cricket-emerald)]" />
-                  <span>Verified World Records</span>
-                </h4>
+              <div className="space-y-3">
+                <div className="flex items-center gap-1.5 text-xs text-[var(--cricket-emerald)] font-bold uppercase tracking-wider">
+                  <ShieldCheck className="w-4 h-4" />
+                  <span>Verified Statistical Milestones</span>
+                </div>
                 <div className="space-y-2">
                   {activeModalPlayer.verifiedRecords.map((rec, i) => (
-                    <div key={i} className="p-3.5 bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl">
-                      <div className="flex items-center justify-between text-xs">
-                        <span className="font-bold text-[var(--text-primary)]">{rec.title}</span>
-                        <span className="font-extrabold text-[var(--cricket-emerald)]">{rec.stat}</span>
+                    <div key={i} className="p-4 bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl space-y-1">
+                      <div className="flex items-center justify-between">
+                        <span className="text-xs font-bold text-[var(--text-primary)]">{rec.title}</span>
+                        <span className="text-xs font-mono font-bold text-[var(--cricket-emerald)]">{rec.stat}</span>
                       </div>
-                      <p className="text-[11px] text-[var(--text-muted)] mt-1">{rec.context}</p>
+                      <p className="text-xs text-[var(--text-muted)]">{rec.context}</p>
                     </div>
                   ))}
                 </div>
               </div>
 
-              {/* Action Links */}
+              {/* Key Achievements */}
+              <div className="space-y-2">
+                <h4 className="font-heading text-lg text-[var(--text-primary)]">Major Honors & Career Achievements</h4>
+                <ul className="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs text-[var(--text-secondary)]">
+                  {activeModalPlayer.majorAchievements?.map((ach, i) => (
+                    <li key={i} className="flex items-start gap-2 bg-[var(--bg-elevated)]/60 p-2.5 rounded-lg border border-[var(--border-subtle)]">
+                      <span className="text-[var(--cricket-emerald)] mt-0.5">•</span>
+                      <span>{ach}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+
+              {/* Related Article Link */}
               {activeModalPlayer.relatedArticleSlug && (
                 <div className="pt-2">
                   <Link
                     to={`/blogs/${activeModalPlayer.relatedArticleSlug}`}
                     onClick={() => setActiveModalPlayer(null)}
-                    className="w-full py-3 bg-[var(--cricket-emerald)] hover:bg-emerald-600 text-white font-bold rounded-xl flex items-center justify-center gap-2 transition-colors text-xs shadow-lg"
+                    aria-label={`Read complete in-depth biography article on ${activeModalPlayer.name}`}
+                    className="w-full py-3 px-4 bg-[var(--cricket-emerald)] hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg flex items-center justify-center gap-2 transition-all"
                   >
-                    <span>Read Full 1,000-Word Biography Article</span>
-                    <ChevronRight className="w-4 h-4" />
+                    <span>Read Complete {activeModalPlayer.name} Biography Essay</span>
+                    <ExternalLink className="w-4 h-4" />
                   </Link>
                 </div>
               )}

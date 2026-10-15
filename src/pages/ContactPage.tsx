@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Mail, Send, CheckCircle2, AlertCircle, Info } from 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+import { SEOPageBadge } from '../components/SEOPageBadge';
 
 export const ContactPage: React.FC = () => {
   const [formData, setFormData] = useState({
@@ -39,24 +40,34 @@ export const ContactPage: React.FC = () => {
   };
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] py-12 transition-colors">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] py-8 transition-colors">
       <SEOHead
-        title="Contact CricketVerse Editorial"
-        description="Get in touch with the CricketVerse editorial desk for historical inquiries, corrections, or reader feedback."
+        title="Contact Cricket Editorial Team & Inquiries | CricketVerse"
+        description="Contact cricket editorial team members, submit cricket feedback inquiries, and propose original submit cricket stories for publication review within 48 hours."
+        mainKeyword="contact cricket editorial team"
+        relatedKeywords={['cricket feedback inquiries', 'submit cricket stories']}
+        aeoQuestion="How can readers and writers contact the CricketVerse team?"
+        aeoAnswer="You can submit feedback, corrections, and article proposals through our online form or email editorial@cricketverse.org, with a guaranteed response within 48 hours."
       />
 
-      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {/* Header */}
+      {/* Transparent SEO & AEO Target Inspector */}
+      <SEOPageBadge />
+
+      <div className="max-w-3xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 mt-4">
+        {/* Header with AEO Question & Answer */}
         <div className="text-center space-y-3">
           <div className="inline-flex items-center gap-2 text-xs font-bold text-[var(--cricket-emerald)] tracking-wider uppercase">
             <Mail className="w-4 h-4" />
             <span>Editorial Communication</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-[var(--text-primary)]">
-            Contact Editorial Desk
+            Contact the CricketVerse Editorial Desk
           </h1>
+          <h2 className="font-heading text-2xl sm:text-3xl text-[var(--cricket-emerald)]">
+            How Can You Submit Editorial Feedback or Cricket Story Inquiries?
+          </h2>
           <p className="text-sm text-[var(--text-secondary)] max-w-xl mx-auto leading-relaxed">
-            Have a question regarding historical cricket statistics, an article suggestion, or general inquiries? Send our editorial team a message.
+            You can submit article proposals, statistical corrections, and reader inquiries using our structured online dispatch form below or by writing directly to editorial@cricketverse.org with an expected 48-hour response time.
           </p>
         </div>
 
@@ -82,13 +93,14 @@ export const ContactPage: React.FC = () => {
               {/* Name */}
               <div className="space-y-1.5">
                 <label className="text-xs font-bold text-[var(--text-primary)] block">
-                  Your Name <span className="text-red-400">*</span>
+                  Your Full Name <span className="text-red-400">*</span>
                 </label>
                 <input
                   type="text"
                   value={formData.name}
                   onChange={(e) => setFormData({ ...formData, name: e.target.value })}
                   placeholder="e.g. Rahul Sharma"
+                  aria-label="Your full name"
                   className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl px-4 py-3 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--cricket-emerald)]"
                 />
                 {errors.name && (
@@ -109,6 +121,7 @@ export const ContactPage: React.FC = () => {
                   value={formData.email}
                   onChange={(e) => setFormData({ ...formData, email: e.target.value })}
                   placeholder="e.g. rahul@example.com"
+                  aria-label="Your email address"
                   className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl px-4 py-3 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--cricket-emerald)]"
                 />
                 {errors.email && (
@@ -123,13 +136,14 @@ export const ContactPage: React.FC = () => {
             {/* Subject */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-[var(--text-primary)] block">
-                Subject <span className="text-red-400">*</span>
+                Inquiry Topic / Subject <span className="text-red-400">*</span>
               </label>
               <input
                 type="text"
                 value={formData.subject}
                 onChange={(e) => setFormData({ ...formData, subject: e.target.value })}
-                placeholder="e.g. Statistical inquiry regarding 1983 World Cup"
+                placeholder="e.g. Historical record correction / Article submission query"
+                aria-label="Inquiry topic or subject"
                 className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl px-4 py-3 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--cricket-emerald)]"
               />
               {errors.subject && (
@@ -143,14 +157,15 @@ export const ContactPage: React.FC = () => {
             {/* Message */}
             <div className="space-y-1.5">
               <label className="text-xs font-bold text-[var(--text-primary)] block">
-                Message Content <span className="text-red-400">*</span>
+                Detailed Message <span className="text-red-400">*</span>
               </label>
               <textarea
                 rows={5}
                 value={formData.message}
                 onChange={(e) => setFormData({ ...formData, message: e.target.value })}
-                placeholder="Write your detailed query, feedback, or suggestion here..."
-                className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl p-4 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--cricket-emerald)] leading-relaxed"
+                placeholder="Write your detailed inquiry, fact-checking source link, or feedback here..."
+                aria-label="Detailed message"
+                className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl px-4 py-3 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--cricket-emerald)] resize-y"
               />
               {errors.message && (
                 <p className="text-[11px] text-red-400 flex items-center gap-1">
@@ -160,13 +175,14 @@ export const ContactPage: React.FC = () => {
               )}
             </div>
 
-            {/* Submit Button */}
+            {/* Submit CTA */}
             <button
               type="submit"
-              className="w-full py-3.5 px-6 bg-[var(--cricket-emerald)] hover:bg-emerald-600 text-white font-bold rounded-xl text-xs flex items-center justify-center gap-2 transition-all shadow-lg shadow-emerald-600/30"
+              aria-label="Submit message to CricketVerse editorial desk"
+              className="w-full py-3.5 bg-[var(--cricket-emerald)] hover:bg-emerald-600 text-white font-bold rounded-xl text-xs uppercase tracking-wider transition-all shadow-lg flex items-center justify-center gap-2 cursor-pointer"
             >
-              <span>Transmit Message (Demo Mode)</span>
-              <Send className="w-3.5 h-3.5" />
+              <Send className="w-4 h-4" />
+              <span>Submit Message to Editorial Desk</span>
             </button>
           </form>
         </div>

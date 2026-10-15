@@ -1,6 +1,8 @@
 import React, { useState, useMemo } from 'react';
-import { ShieldCheck, Search } from 'lucide-react';
+import { Link } from 'react-router-dom';
+import { ShieldCheck, Search, ArrowRight, ExternalLink } from 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+import { SEOPageBadge } from '../components/SEOPageBadge';
 import { verifiedCricketRecords } from '../data/recordsData';
 
 export const RecordsPage: React.FC = () => {
@@ -28,24 +30,34 @@ export const RecordsPage: React.FC = () => {
   }, [searchQuery, selectedFormat, selectedCategory]);
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] py-12 transition-colors">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] py-8 transition-colors">
       <SEOHead
-        title="Verified Cricket Records & Statistics"
-        description="Explore verified historical cricket records across Tests, ODIs, T20Is, World Cups, and the IPL. Featuring Bradman’s 99.94, Lara’s 400*, Murali’s 800 wickets, and Rohit’s 264."
+        title="Verified Cricket Records & Historic Stats | CricketVerse"
+        description="Review verified cricket records, examine all-time highest cricket scores, and discover the most international wickets taken across Test, ODI, and T20 matches."
+        mainKeyword="verified cricket records"
+        relatedKeywords={['highest cricket scores', 'most international wickets']}
+        aeoQuestion="What are the most famous historic records in cricket?"
+        aeoAnswer="Notable records include Bradman’s 99.94 Test average, Brian Lara’s 400 not out, Muralitharan’s 800 Test wickets, and Rohit Sharma’s 264 ODI individual score."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {/* Header */}
+      {/* Transparent SEO & AEO Target Inspector */}
+      <SEOPageBadge />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 mt-4">
+        {/* Header with AEO Question & Answer */}
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 text-xs font-bold text-[var(--cricket-emerald)] tracking-wider uppercase">
             <ShieldCheck className="w-4 h-4" />
             <span>Official ICC Historical Database</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-[var(--text-primary)]">
-            Cricket Records That Made History
+            Verified Cricket Records & Statistical Milestones
           </h1>
-          <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl leading-relaxed">
-            Statistically verified milestones across 140+ years of international competition. Every entry includes official source verification and verification timestamps.
+          <h2 className="font-heading text-2xl sm:text-3xl text-[var(--cricket-emerald)]">
+            What Are the Most Unbreakable Batting and Bowling Records in Cricket?
+          </h2>
+          <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-3xl leading-relaxed">
+            Cricket’s most resilient records include Sir Donald Bradman’s 99.94 career Test batting average, Brian Lara’s 400 not out in a single Test innings, Muttiah Muralitharan’s 800 Test wickets, and Rohit Sharma’s 264 in a One Day International. Review all verified records below.
           </p>
         </div>
 
@@ -60,6 +72,7 @@ export const RecordsPage: React.FC = () => {
                 value={searchQuery}
                 onChange={(e) => setSearchQuery(e.target.value)}
                 placeholder="Search record name, player, or team..."
+                aria-label="Search verified cricket records"
                 className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl pl-10 pr-4 py-3 text-xs text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--cricket-emerald)]"
               />
             </div>
@@ -70,6 +83,7 @@ export const RecordsPage: React.FC = () => {
               <select
                 value={selectedFormat}
                 onChange={(e) => setSelectedFormat(e.target.value)}
+                aria-label="Filter records by match format"
                 className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] text-xs font-bold text-[var(--text-primary)] rounded-xl px-3 py-3 focus:outline-none focus:border-[var(--cricket-emerald)] cursor-pointer"
               >
                 {formats.map((f) => (
@@ -86,6 +100,7 @@ export const RecordsPage: React.FC = () => {
               <select
                 value={selectedCategory}
                 onChange={(e) => setSelectedCategory(e.target.value)}
+                aria-label="Filter records by discipline category"
                 className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] text-xs font-bold text-[var(--text-primary)] rounded-xl px-3 py-3 focus:outline-none focus:border-[var(--cricket-emerald)] cursor-pointer"
               >
                 {categories.map((c) => (
@@ -109,7 +124,8 @@ export const RecordsPage: React.FC = () => {
                   setSelectedFormat('All');
                   setSelectedCategory('All');
                 }}
-                className="text-[var(--cricket-emerald)] hover:underline font-bold"
+                aria-label="Reset record search filters"
+                className="text-[var(--cricket-emerald)] hover:underline font-bold cursor-pointer"
               >
                 Reset Filters
               </button>
@@ -117,85 +133,73 @@ export const RecordsPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Records Table View */}
-        <div className="border border-[var(--border-subtle)] rounded-3xl overflow-hidden bg-[var(--bg-card)] shadow-2xl">
-          {/* Desktop Table View */}
-          <div className="hidden lg:block overflow-x-auto">
-            <table className="w-full text-left text-xs sm:text-sm">
-              <thead>
-                <tr className="bg-[var(--bg-secondary)] text-[var(--text-primary)] border-b border-[var(--border-subtle)]">
-                  <th className="py-4 px-4 font-bold">Record Description</th>
-                  <th className="py-4 px-4 font-bold">Format & Discipline</th>
-                  <th className="py-4 px-4 font-bold">Holder / Team</th>
-                  <th className="py-4 px-4 font-bold">Achievement</th>
-                  <th className="py-4 px-4 font-bold">Period / Date</th>
-                  <th className="py-4 px-4 font-bold">Verification & Source</th>
+        {/* Records Table Card */}
+        <div className="bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-3xl overflow-hidden shadow-2xl">
+          <div className="overflow-x-auto">
+            <table className="w-full text-left text-sm">
+              <thead className="bg-[var(--bg-secondary)] border-b border-[var(--border-subtle)] text-xs text-[var(--text-muted)] uppercase tracking-wider font-bold">
+                <tr>
+                  <th className="py-4 px-6">Record Description</th>
+                  <th className="py-4 px-6">Record Holder</th>
+                  <th className="py-4 px-6">Stat / Achievement</th>
+                  <th className="py-4 px-6 hidden md:table-cell">Format & Category</th>
+                  <th className="py-4 px-6 hidden lg:table-cell">Source & Verified Date</th>
                 </tr>
               </thead>
-              <tbody className="divide-y divide-[var(--border-subtle)] text-[var(--text-secondary)]">
+              <tbody className="divide-y divide-[var(--border-subtle)]">
                 {filteredRecords.map((rec) => (
-                  <tr key={rec.id} className="hover:bg-[var(--bg-elevated)] transition-colors">
-                    <td className="py-4 px-4 font-bold text-[var(--text-primary)]">
-                      <div>{rec.recordName}</div>
-                      <div className="text-[11px] text-[var(--text-muted)] font-normal mt-0.5 line-clamp-1">
-                        {rec.details}
-                      </div>
+                  <tr key={rec.id} className="hover:bg-[var(--bg-elevated)]/50 transition-colors">
+                    <td className="py-4 px-6">
+                      <p className="font-bold text-[var(--text-primary)] text-sm">{rec.recordName}</p>
+                      <p className="text-xs text-[var(--text-muted)] mt-0.5">{rec.details}</p>
                     </td>
-                    <td className="py-4 px-4 whitespace-nowrap">
-                      <span className="text-[var(--cricket-emerald)] font-bold">{rec.format}</span>
-                      <span className="text-[var(--text-muted)] mx-1">·</span>
-                      <span>{rec.category}</span>
-                    </td>
-                    <td className="py-4 px-4 font-bold text-[var(--text-primary)] whitespace-nowrap">
+                    <td className="py-4 px-6 font-semibold text-[var(--text-primary)] whitespace-nowrap">
                       {rec.holder}
                     </td>
-                    <td className="py-4 px-4 whitespace-nowrap">
-                      <span className="font-extrabold text-[var(--cricket-emerald)] text-sm">{rec.achievement}</span>
+                    <td className="py-4 px-6 whitespace-nowrap">
+                      <span className="font-heading text-xl text-[var(--cricket-emerald)] font-bold">
+                        {rec.achievement}
+                      </span>
                     </td>
-                    <td className="py-4 px-4 text-[var(--text-muted)] whitespace-nowrap text-xs">
-                      {rec.dateOrSpan}
+                    <td className="py-4 px-6 hidden md:table-cell whitespace-nowrap">
+                      <div className="flex items-center gap-1.5">
+                        <span className="px-2 py-0.5 text-xs rounded bg-[var(--bg-elevated)] border border-[var(--border-subtle)] text-[var(--text-secondary)] font-medium">
+                          {rec.format}
+                        </span>
+                        <span className="px-2 py-0.5 text-xs rounded bg-[var(--cricket-emerald)]/10 text-[var(--cricket-emerald)] font-medium border border-[var(--cricket-emerald)]/30">
+                          {rec.category}
+                        </span>
+                      </div>
                     </td>
-                    <td className="py-4 px-4 text-[11px] text-[var(--text-muted)]">
-                      <p className="text-[var(--text-primary)] font-semibold truncate max-w-[160px]">{rec.source}</p>
-                      <p className="text-[var(--cricket-emerald)] text-[10px]">Verified: {rec.lastVerified}</p>
+                    <td className="py-4 px-6 hidden lg:table-cell text-xs text-[var(--text-muted)] whitespace-nowrap">
+                      <p>{rec.source}</p>
+                      <p className="text-[11px] text-[var(--cricket-emerald)]">Verified: {rec.lastVerified}</p>
                     </td>
                   </tr>
                 ))}
               </tbody>
             </table>
           </div>
+        </div>
 
-          {/* Mobile & Tablet Card View */}
-          <div className="lg:hidden divide-y divide-[var(--border-subtle)]">
-            {filteredRecords.map((rec) => (
-              <div key={rec.id} className="p-5 space-y-3">
-                <div className="flex items-center justify-between text-xs">
-                  <span className="text-[var(--cricket-emerald)] font-bold">
-                    {rec.format} · {rec.category}
-                  </span>
-                  <span className="text-[11px] text-[var(--text-muted)]">{rec.dateOrSpan}</span>
-                </div>
-                <div>
-                  <h3 className="font-heading text-xl text-[var(--text-primary)]">{rec.recordName}</h3>
-                  <p className="text-xs text-[var(--text-muted)] mt-0.5">{rec.details}</p>
-                </div>
-                <div className="p-3.5 bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl flex items-center justify-between">
-                  <div>
-                    <span className="text-[10px] text-[var(--text-muted)] uppercase block font-bold">Record Holder</span>
-                    <span className="text-xs font-bold text-[var(--text-primary)]">{rec.holder}</span>
-                  </div>
-                  <div className="text-right">
-                    <span className="text-[10px] text-[var(--text-muted)] uppercase block font-bold">Achievement</span>
-                    <span className="text-xs font-extrabold text-[var(--cricket-emerald)]">{rec.achievement}</span>
-                  </div>
-                </div>
-                <div className="text-[11px] text-[var(--text-muted)] flex items-center justify-between pt-1">
-                  <span>Source: {rec.source}</span>
-                  <span className="text-[var(--cricket-emerald)] font-semibold">Verified {rec.lastVerified}</span>
-                </div>
-              </div>
-            ))}
+        {/* Deep Dive Callout */}
+        <div className="p-8 bg-gradient-to-r from-[var(--bg-card)] to-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-3xl flex flex-col md:flex-row items-start md:items-center justify-between gap-6 shadow-xl">
+          <div className="space-y-1 max-w-xl">
+            <h3 className="font-heading text-2xl text-[var(--text-primary)]">
+              Curious About the Stories Behind These Numbers?
+            </h3>
+            <p className="text-xs text-[var(--text-secondary)] leading-relaxed">
+              Read our dedicated analytical article examining Bradman’s 99.94, Lara’s marathon 400*, and Murali’s 800 wickets in full historical context.
+            </p>
           </div>
+          <Link
+            to="/blogs/cricket-records"
+            aria-label="Read complete essay on historical cricket records"
+            className="px-6 py-3 bg-[var(--cricket-emerald)] hover:bg-emerald-600 text-white font-bold text-xs uppercase tracking-wider rounded-xl shadow-lg flex items-center gap-2 shrink-0 transition-all cursor-pointer"
+          >
+            <span>Read Records Essay</span>
+            <ArrowRight className="w-4 h-4" />
+          </Link>
         </div>
       </div>
     </div>

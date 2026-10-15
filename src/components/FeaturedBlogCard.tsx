@@ -26,6 +26,8 @@ export const FeaturedBlogCard: React.FC<FeaturedBlogCardProps> = ({ blog }) => {
           <img
             src={blog.coverImage}
             alt={blog.coverImageAlt}
+            loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-center transform hover:scale-105 transition-transform duration-700 ease-out"
           />
           <div className="absolute inset-0 bg-gradient-to-t lg:bg-gradient-to-r from-transparent via-transparent to-[var(--bg-card)] hidden lg:block opacity-90" />
@@ -34,8 +36,8 @@ export const FeaturedBlogCard: React.FC<FeaturedBlogCardProps> = ({ blog }) => {
           {/* Bookmark Button */}
           <button
             onClick={() => toggleSave(blog.slug)}
-            aria-label={saved ? 'Remove bookmark' : 'Bookmark article'}
-            className={`absolute top-4 left-4 p-3 rounded-xl backdrop-blur-md transition-all z-10 shadow-lg ${
+            aria-label={saved ? `Remove bookmark for ${blog.title}` : `Bookmark article: ${blog.title}`}
+            className={`absolute top-4 left-4 p-3 rounded-xl backdrop-blur-md transition-all z-10 shadow-lg cursor-pointer ${
               saved
                 ? 'bg-[var(--cricket-emerald)] text-white'
                 : 'bg-black/60 text-white hover:bg-black/80'
@@ -59,11 +61,11 @@ export const FeaturedBlogCard: React.FC<FeaturedBlogCardProps> = ({ blog }) => {
             </div>
 
             {/* Title */}
-            <h2 className="font-heading text-3xl sm:text-4xl lg:text-4xl text-[var(--text-primary)] hover:text-[var(--cricket-emerald)] transition-colors leading-[1.05]">
-              <Link to={`/blogs/${blog.slug}`}>
+            <h3 className="font-heading text-3xl sm:text-4xl lg:text-4xl text-[var(--text-primary)] hover:text-[var(--cricket-emerald)] transition-colors leading-[1.05]">
+              <Link to={`/blogs/${blog.slug}`} aria-label={`Read featured story: ${blog.title}`}>
                 {blog.title}
               </Link>
-            </h2>
+            </h3>
 
             {/* Subtitle */}
             <p className="text-sm font-subheading text-[var(--cricket-emerald)] uppercase tracking-wide font-medium">
@@ -82,7 +84,9 @@ export const FeaturedBlogCard: React.FC<FeaturedBlogCardProps> = ({ blog }) => {
               <div className="flex items-center gap-3">
                 <img
                   src={blog.author.avatar}
-                  alt={blog.author.name}
+                  alt={`Author portrait of ${blog.author.name}`}
+                  loading="lazy"
+                  decoding="async"
                   className="w-9 h-9 rounded-full object-cover border-2 border-[var(--cricket-emerald)]"
                 />
                 <div>
@@ -100,13 +104,14 @@ export const FeaturedBlogCard: React.FC<FeaturedBlogCardProps> = ({ blog }) => {
               </div>
             </div>
 
-            {/* Read Button */}
+            {/* Read Button with descriptive anchor text */}
             <Link
               to={`/blogs/${blog.slug}`}
-              className="w-full inline-flex items-center justify-center gap-2 py-3 px-6 bg-[var(--cricket-emerald)] text-white font-bold rounded-xl transition-all shadow-lg hover:shadow-emerald-500/25 text-sm group"
+              className="w-full sm:w-auto px-6 py-3 rounded-xl bg-[var(--cricket-emerald)] hover:bg-emerald-600 text-white font-bold text-xs tracking-wider uppercase transition-all shadow-lg flex items-center justify-center gap-2 group cursor-pointer"
+              aria-label={`Read complete article: ${blog.title}`}
             >
-              <span>Read Full Cover Story</span>
-              <ArrowRight className="w-4 h-4 group-hover:translate-x-1.5 transition-transform" />
+              <span>Read Complete Article</span>
+              <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
         </div>

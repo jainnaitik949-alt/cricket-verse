@@ -12,7 +12,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Batter',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm medium / leg-break / off-break',
-    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=75',
     careerSpan: '1989–2013',
     overview: 'Universally revered as one of the greatest batters in the history of the game. Debuting at 16, he carried the hopes of Indian cricket for 24 years, accumulating over 34,000 international runs and becoming the only player to score 100 international centuries.',
     majorAchievements: [
@@ -46,7 +46,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Batter',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm medium',
-    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=75',
     careerSpan: '2008–Present',
     overview: 'The preeminent batter of the modern era, renowned for unmatched consistency across formats, ferocious fitness standards, and mastery of second-innings run chases. Led India to historic away Test series triumphs in Australia.',
     majorAchievements: [
@@ -80,7 +80,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Wicketkeeper Batter',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm medium',
-    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=75',
     careerSpan: '2004–2020 (IPL ongoing)',
     overview: 'One of world cricket’s most successful and iconic captains. Renowned for unshakeable nerve in pressure situations, inventive finishing (including the helicopter shot), and revolutionary lightning-quick wicketkeeping.',
     majorAchievements: [
@@ -113,7 +113,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Batter',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm off-break',
-    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=75',
     careerSpan: '2007–Present',
     overview: 'An opening batter characterized by effortless timing, devastating pull shots, and big-hitting authority. Captained India to the 2024 ICC Men’s T20 World Cup title and led Mumbai Indians to 5 IPL trophies.',
     majorAchievements: [
@@ -147,7 +147,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Fast Bowler',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm fast',
-    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=75',
     careerSpan: '2016–Present',
     overview: 'Widely regarded as the most versatile and feared all-format fast bowler of his generation. Armed with an unorthodox hyperextended arm action, devastating yorkers, and lethal outswing, he performs in all match conditions.',
     majorAchievements: [
@@ -180,7 +180,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'All-rounder',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm fast-medium',
-    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=75',
     careerSpan: '1978–1994',
     overview: 'India’s greatest pace-bowling all-rounder and the inspirational captain who led the nation to its watershed 1983 Cricket World Cup victory at Lord’s. Renowned for boundless stamina, outswing bowling, and explosive hitting.',
     majorAchievements: [
@@ -210,7 +210,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Batter',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm off-break',
-    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=75',
     careerSpan: '1996–2012',
     overview: 'The epitome of patience, concentration, and defensive perfection. Batted at number three in Test cricket, facing more deliveries and spending more minutes at the crease than any other batter in history. Later coached India to the 2024 T20 World Cup title.',
     majorAchievements: [
@@ -241,7 +241,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Batter',
     battingStyle: 'Left-hand bat',
     bowlingStyle: 'Right-arm medium',
-    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=75',
     careerSpan: '1992–2008',
     overview: 'One of cricket’s most charismatic leaders, credited with injecting fearless aggression into Indian cricket following the 2000 match-fixing crisis. Supreme elegance through the off-side earned him legendary status.',
     majorAchievements: [
@@ -271,7 +271,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Batter',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm medium',
-    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=75',
     careerSpan: '1971–1987',
     overview: 'The first batter in history to scale the 10,000-run and 30-century peaks in Test cricket. Facing the ferocious West Indies pace quartets without a modern protective helmet, his courage and technical precision are legendary.',
     majorAchievements: [
@@ -301,7 +301,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'All-rounder',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm fast-medium',
-    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=75',
     careerSpan: '2016–Present',
     overview: 'Modern cricket’s premier white-ball pace-bowling all-rounder, known for clearing boundaries in the death overs and bowling clutch high-pressure spells. Bowled the dramatic final over in the 2024 T20 World Cup Final.',
     majorAchievements: [
@@ -332,7 +332,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Batter',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm leg-break',
-    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=75',
     careerSpan: '1928–1948',
     overview: 'Statistically the greatest athlete in any major international team sport. His career Test batting average of 99.94 stands so far beyond any other cricketer that it remains sport’s benchmark of unassailable excellence.',
     majorAchievements: [
@@ -362,7 +362,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Batter',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm off-break',
-    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=75',
     careerSpan: '1974–1991',
     overview: 'The most destructive and swaggering batter of the 20th century. Batting without a helmet against the fastest bowlers in world cricket, his audacity, footwork, and devastating strokeplay struck terror into opposition attacks.',
     majorAchievements: [
@@ -392,7 +392,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Spin Bowler',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm leg-break',
-    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=75',
     careerSpan: '1992–2007',
     overview: 'Single-handedly revived the dying art of leg-spin bowling in the 1990s. With theatrical charisma, supreme drift, and fierce revs, he captured 708 Test wickets and bowled the legendary "Ball of the Century" to Mike Gatting in 1993.',
     majorAchievements: [
@@ -423,7 +423,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Spin Bowler',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm off-break',
-    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1531415074868-036b107e7752?auto=format&fit=crop&w=800&q=75',
     careerSpan: '1992–2011',
     overview: 'The all-time highest wicket-taker in international cricket history. Armed with a wrist-spinning off-break action, extraordinary shoulder flexibility, and the famous "doosra", he revolutionized Sri Lankan cricket.',
     majorAchievements: [
@@ -455,7 +455,7 @@ export const playersData: PlayerProfile[] = [
     primaryRole: 'Batter',
     battingStyle: 'Right-hand bat',
     bowlingStyle: 'Right-arm medium',
-    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=80',
+    image: 'https://images.unsplash.com/photo-1540747913346-19e32dc3e97e?auto=format&fit=crop&w=800&q=75',
     careerSpan: '2004–2018 (IPL to 2021)',
     overview: 'A supernatural batting genius capable of accessing every degree of the cricket field. Equally adept at blocking 220 balls for 33 runs to save a Test or smashing a 31-ball ODI hundred with sweeps, reverse sweeps, and scoops.',
     majorAchievements: [

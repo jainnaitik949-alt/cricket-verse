@@ -14,10 +14,12 @@ import {
   Sparkles,
 } from 'lucide-react';
 import { SEOHead } from '../components/SEOHead';
+import { SEOPageBadge } from '../components/SEOPageBadge';
 import { ShareModal } from '../components/ShareModal';
 import { BlogCard } from '../components/BlogCard';
 import { useBookmarks } from '../context/BookmarkContext';
 import { allBlogs, getBlogBySlug, getRelatedBlogs } from '../data/blogsData';
+import { getSEOConfig } from '../data/seoData';
 
 export const BlogDetailPage: React.FC = () => {
   const { slug } = useParams<{ slug: string }>();
@@ -26,6 +28,7 @@ export const BlogDetailPage: React.FC = () => {
   const [readingProgress, setReadingProgress] = useState(0);
 
   const blog = slug ? getBlogBySlug(slug) : undefined;
+  const seoConfig = slug ? getSEOConfig(`/blogs/${slug}`) : null;
 
   // Track scroll reading progress bar
   useEffect(() => {
@@ -43,7 +46,7 @@ export const BlogDetailPage: React.FC = () => {
   if (!blog) {
     return (
       <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] flex items-center justify-center p-4">
-        <SEOHead title="Article Not Found" description="The requested cricket article could not be found." />
+        <SEOHead title="Article Not Found | CricketVerse" description="The requested cricket article could not be found." />
         <div className="text-center max-w-md bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-2xl p-8 space-y-4">
           <h2 className="font-heading text-4xl text-[var(--text-primary)]">Article Not Found</h2>
           <p className="text-sm text-[var(--text-secondary)]">
@@ -51,6 +54,7 @@ export const BlogDetailPage: React.FC = () => {
           </p>
           <Link
             to="/blogs"
+            aria-label="Return to All Cricket Blogs Directory"
             className="inline-flex items-center gap-2 px-6 py-2.5 bg-[var(--cricket-emerald)] text-white text-xs font-bold rounded-xl hover:bg-emerald-600 transition-colors"
           >
             <ArrowLeft className="w-4 h-4" />
@@ -79,14 +83,22 @@ export const BlogDetailPage: React.FC = () => {
     year: 'numeric',
   });
 
-  const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://cricketverse.app/blogs/${blog.slug}`;
+  const currentUrl = typeof window !== 'undefined' ? window.location.href : `https://cricketverse.org/blogs/${blog.slug}`;
 
   return (
     <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] pb-20 transition-colors relative">
       <SEOHead
-        title={blog.title}
-        description={blog.excerpt}
+        title={seoConfig?.pageTitle || blog.title}
+        description={seoConfig?.metaDescription || blog.excerpt}
+        mainKeyword={seoConfig?.mainKeyword}
+        relatedKeywords={seoConfig?.relatedKeywords}
         ogType="article"
+        publishedDate={blog.publishedDate}
+        modifiedDate={blog.lastVerifiedDate}
+        authorName={blog.author.name}
+        imageUrl={blog.coverImage}
+        aeoQuestion={seoConfig?.aeoQuestion}
+        aeoAnswer={seoConfig?.aeoAnswer}
       />
 
       {/* Top Reading Progress Bar */}
@@ -103,15 +115,18 @@ export const BlogDetailPage: React.FC = () => {
         url={currentUrl}
       />
 
+      {/* Transparent SEO & AEO Target Inspector */}
+      <SEOPageBadge />
+
       {/* Breadcrumb Bar */}
-      <div className="bg-[var(--bg-secondary)] border-b border-[var(--border-subtle)] py-3 transition-colors">
+      <div className="bg-[var(--bg-secondary)] border-b border-[var(--border-subtle)] py-3 transition-colors mt-2">
         <div className="max-w-5xl mx-auto px-4 sm:px-6 flex items-center justify-between text-xs text-[var(--text-muted)]">
           <div className="flex items-center gap-2 overflow-hidden truncate">
-            <Link to="/" className="hover:text-[var(--text-primary)] transition-colors">
+            <Link to="/" aria-label="Go to CricketVerse Homepage" className="hover:text-[var(--text-primary)] transition-colors">
               Home
             </Link>
             <span>/</span>
-            <Link to="/blogs" className="hover:text-[var(--text-primary)] transition-colors">
+            <Link to="/blogs" aria-label="Go to All Cricket Blogs Directory" className="hover:text-[var(--text-primary)] transition-colors">
               Blogs
             </Link>
             <span>/</span>
@@ -120,6 +135,7 @@ export const BlogDetailPage: React.FC = () => {
 
           <Link
             to="/blogs"
+            aria-label="View all 12 cricket articles in the directory"
             className="hidden sm:inline-flex items-center gap-1 text-[var(--cricket-emerald)] hover:text-emerald-400 font-bold shrink-0"
           >
             <ChevronLeft className="w-3.5 h-3.5" />
@@ -129,11 +145,12 @@ export const BlogDetailPage: React.FC = () => {
       </div>
 
       {/* Article Header Container */}
-      <header className="max-w-4xl mx-auto px-4 sm:px-6 pt-10 sm:pt-14 space-y-6">
+      <header className="max-w-4xl mx-auto px-4 sm:px-6 pt-8 sm:pt-12 space-y-6">
         {/* Category & Read Time */}
         <div className="flex flex-wrap items-center gap-2 text-xs font-bold uppercase tracking-wider text-[var(--text-muted)]">
           <Link
             to={`/blogs?category=${encodeURIComponent(blog.category)}`}
+            aria-label={`View articles in category: ${blog.category}`}
             className="text-[var(--cricket-emerald)] hover:underline"
           >
             {blog.category}
@@ -165,7 +182,9 @@ export const BlogDetailPage: React.FC = () => {
           <div className="flex items-center gap-3">
             <img
               src={blog.author.avatar}
-              alt={blog.author.name}
+              alt={`Portrait photo of author ${blog.author.name}`}
+              loading="lazy"
+              decoding="async"
               className="w-12 h-12 rounded-full object-cover border-2 border-[var(--cricket-emerald)]"
             />
             <div>
@@ -178,7 +197,8 @@ export const BlogDetailPage: React.FC = () => {
             {/* Bookmark button */}
             <button
               onClick={() => toggleSave(blog.slug)}
-              className={`px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 transition-all ${
+              aria-label={saved ? `Remove ${blog.title} from bookmarks` : `Bookmark article: ${blog.title}`}
+              className={`px-4 py-2.5 rounded-xl text-xs font-bold flex items-center gap-2 transition-all cursor-pointer ${
                 saved
                   ? 'bg-[var(--cricket-emerald)] text-white shadow-md'
                   : 'bg-[var(--bg-card)] hover:bg-[var(--bg-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)]'
@@ -191,8 +211,8 @@ export const BlogDetailPage: React.FC = () => {
             {/* Share button */}
             <button
               onClick={() => setShareModalOpen(true)}
-              className="p-2.5 rounded-xl bg-[var(--bg-card)] hover:bg-[var(--bg-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)] transition-colors"
-              title="Share article"
+              className="p-2.5 rounded-xl bg-[var(--bg-card)] hover:bg-[var(--bg-elevated)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)] transition-colors cursor-pointer"
+              title="Share article with friends"
               aria-label="Share article"
             >
               <Share2 className="w-4 h-4" />
@@ -200,12 +220,14 @@ export const BlogDetailPage: React.FC = () => {
           </div>
         </div>
 
-        {/* Cover Image & Caption */}
+        {/* Cover Image & Caption with small image optimizations */}
         <div className="pt-4 space-y-2">
           <div className="rounded-3xl overflow-hidden border border-[var(--border-subtle)] aspect-[16/9] bg-[var(--bg-secondary)] shadow-2xl">
             <img
               src={blog.coverImage}
               alt={blog.coverImageAlt}
+              loading="eager"
+              decoding="async"
               className="w-full h-full object-cover object-center"
             />
           </div>
@@ -230,6 +252,7 @@ export const BlogDetailPage: React.FC = () => {
               <li key={section.id}>
                 <a
                   href={`#${section.id}`}
+                  aria-label={`Jump to section ${idx + 1}: ${section.title}`}
                   className="text-[var(--text-secondary)] hover:text-[var(--cricket-emerald)] transition-colors flex items-start gap-1.5 line-clamp-1 py-1"
                 >
                   <span className="text-[var(--cricket-emerald)] font-bold">{idx + 1}.</span>
@@ -240,6 +263,7 @@ export const BlogDetailPage: React.FC = () => {
             <li>
               <a
                 href="#key-takeaways"
+                aria-label="Jump to Key Takeaways & Fact Sheet"
                 className="text-[var(--cricket-emerald)] hover:underline transition-colors flex items-center gap-1.5 py-1 font-bold"
               >
                 <span>★ Key Takeaways & Fact Sheet</span>
@@ -253,7 +277,7 @@ export const BlogDetailPage: React.FC = () => {
           {blog.introduction}
         </div>
 
-        {/* Article Body Sections */}
+        {/* Article Body Sections with AEO Question Subheadings */}
         <article className="space-y-12 text-[var(--text-primary)] leading-relaxed">
           {blog.sections.map((section) => (
             <section key={section.id} id={section.id} className="space-y-4 scroll-mt-24">
@@ -350,6 +374,7 @@ export const BlogDetailPage: React.FC = () => {
                       href={src.url}
                       target="_blank"
                       rel="noopener noreferrer"
+                      aria-label={`Official source link: ${src.title}`}
                       className="text-[var(--cricket-emerald)] hover:underline inline-flex items-center gap-1 font-semibold"
                     >
                       <span>{src.title}</span>
@@ -370,6 +395,7 @@ export const BlogDetailPage: React.FC = () => {
               <Link
                 key={tag}
                 to={`/blogs?search=${encodeURIComponent(tag)}`}
+                aria-label={`Browse articles tagged with #${tag}`}
                 className="px-3 py-1 bg-[var(--bg-elevated)] hover:bg-[var(--cricket-emerald)] text-[var(--text-secondary)] hover:text-white rounded-lg border border-[var(--border-subtle)] transition-colors font-medium"
               >
                 #{tag}
@@ -378,11 +404,12 @@ export const BlogDetailPage: React.FC = () => {
           </div>
         </article>
 
-        {/* Previous and Next Article Links */}
+        {/* Previous and Next Article Links with descriptive anchor text */}
         <div className="pt-8 border-t border-[var(--border-subtle)] grid grid-cols-1 sm:grid-cols-2 gap-4">
           {prevBlog ? (
             <Link
               to={`/blogs/${prevBlog.slug}`}
+              aria-label={`Read previous article: ${prevBlog.title}`}
               className="p-4 bg-[var(--bg-card)] hover:bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-2xl flex items-center gap-3 transition-colors group shadow-sm"
             >
               <ChevronLeft className="w-5 h-5 text-[var(--cricket-emerald)] shrink-0 group-hover:-translate-x-1 transition-transform" />
@@ -400,6 +427,7 @@ export const BlogDetailPage: React.FC = () => {
           {nextBlog && (
             <Link
               to={`/blogs/${nextBlog.slug}`}
+              aria-label={`Read next article: ${nextBlog.title}`}
               className="p-4 bg-[var(--bg-card)] hover:bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-2xl flex items-center justify-between gap-3 text-right transition-colors group shadow-sm"
             >
               <div className="overflow-hidden">

@@ -21,7 +21,8 @@ export const AnnouncementStrip: React.FC = () => {
 
         <div className="flex items-center gap-4 shrink-0">
           <Link
-            to="/basics"
+            to="/cricket-basics"
+            aria-label="Read beginner cricket rules and field guide"
             className="hidden md:inline-flex items-center gap-1 text-emerald-300 hover:text-white font-semibold transition-colors text-[12px]"
           >
             <span>Beginner’s Field Guide</span>
@@ -29,8 +30,8 @@ export const AnnouncementStrip: React.FC = () => {
           </Link>
           <button
             onClick={() => setIsVisible(false)}
-            aria-label="Dismiss announcement"
-            className="text-emerald-400 hover:text-white transition-colors p-1"
+            aria-label="Dismiss editorial announcement"
+            className="text-emerald-400 hover:text-white transition-colors p-1 cursor-pointer"
           >
             <X className="w-3.5 h-3.5" />
           </button>

@@ -12,12 +12,6 @@ export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
   const { isSaved, toggleSave } = useBookmarks();
   const saved = isSaved(blog.slug);
 
-  const formattedDate = new Date(blog.publishedDate).toLocaleDateString('en-US', {
-    month: 'short',
-    day: 'numeric',
-    year: 'numeric',
-  });
-
   return (
     <article className="group bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-2xl overflow-hidden hover:border-[var(--cricket-emerald)] transition-all duration-300 hover:shadow-xl hover:-translate-y-1 flex flex-col h-full">
       {/* Cover Image Container */}
@@ -26,6 +20,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
           src={blog.coverImage}
           alt={blog.coverImageAlt}
           loading="lazy"
+          decoding="async"
           className="w-full h-full object-cover object-center group-hover:scale-105 transition-transform duration-500 ease-out"
         />
         <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-card)] via-transparent to-transparent opacity-80" />
@@ -37,8 +32,8 @@ export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
             e.stopPropagation();
             toggleSave(blog.slug);
           }}
-          aria-label={saved ? 'Remove bookmark' : 'Bookmark article'}
-          className={`absolute top-3 right-3 p-2.5 rounded-xl backdrop-blur-md transition-all ${
+          aria-label={saved ? `Remove bookmark for ${blog.title}` : `Bookmark article: ${blog.title}`}
+          className={`absolute top-3 right-3 p-2.5 rounded-xl backdrop-blur-md transition-all cursor-pointer ${
             saved
               ? 'bg-[var(--cricket-emerald)] text-white shadow-md'
               : 'bg-black/60 text-white hover:bg-black/80'
@@ -63,7 +58,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
 
           {/* Title */}
           <h3 className="font-heading text-2xl sm:text-2xl text-[var(--text-primary)] group-hover:text-[var(--cricket-emerald)] transition-colors leading-tight line-clamp-2">
-            <Link to={`/blogs/${blog.slug}`}>
+            <Link to={`/blogs/${blog.slug}`} aria-label={`Read article: ${blog.title}`}>
               {blog.title}
             </Link>
           </h3>
@@ -79,7 +74,9 @@ export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
           <div className="flex items-center gap-2">
             <img
               src={blog.author.avatar}
-              alt={blog.author.name}
+              alt={`Photo of author ${blog.author.name}`}
+              loading="lazy"
+              decoding="async"
               className="w-6 h-6 rounded-full object-cover border border-[var(--border-subtle)]"
             />
             <span className="text-[var(--text-secondary)] font-medium truncate max-w-[120px]">{blog.author.name}</span>
@@ -88,6 +85,7 @@ export const BlogCard: React.FC<BlogCardProps> = ({ blog }) => {
           <Link
             to={`/blogs/${blog.slug}`}
             className="inline-flex items-center gap-1 font-bold text-[var(--cricket-emerald)] hover:text-emerald-400 transition-colors group-hover:translate-x-1 duration-200"
+            aria-label={`Read complete article: ${blog.title}`}
           >
             <span>Read Article</span>
             <ArrowRight className="w-3.5 h-3.5" />

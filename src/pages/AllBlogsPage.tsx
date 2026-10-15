@@ -3,6 +3,7 @@ import { useSearchParams } from 'react-router-dom';
 import { Search, X, ArrowUpDown, BookOpen, AlertCircle } from 'lucide-react';
 import { BlogCard } from '../components/BlogCard';
 import { SEOHead } from '../components/SEOHead';
+import { SEOPageBadge } from '../components/SEOPageBadge';
 import { allBlogs, blogCategories } from '../data/blogsData';
 
 export const AllBlogsPage: React.FC = () => {
@@ -77,24 +78,34 @@ export const AllBlogsPage: React.FC = () => {
   const hasActiveFilters = selectedCategory !== 'All' || searchQuery.trim() !== '';
 
   return (
-    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] py-12 transition-colors">
+    <div className="min-h-screen bg-[var(--bg-primary)] text-[var(--text-primary)] py-8 transition-colors">
       <SEOHead
-        title="All Cricket Blogs & Guides"
-        description="Browse all 12 complete, detailed cricket articles on CricketVerse covering history, rules, formats, legends, IPL, records, batting, bowling, and technology."
+        title="Cricket Blog Articles & Tactical Guides | CricketVerse"
+        description="Read complete cricket blog articles, dive into expert cricket analysis, and discover modern cricket stories covering Test, ODI, and T20 league matches."
+        mainKeyword="cricket blog articles"
+        relatedKeywords={['cricket analysis', 'modern cricket stories']}
+        aeoQuestion="What cricket topics and categories are covered on CricketVerse?"
+        aeoAnswer="CricketVerse covers cricket history, match laws, player profiles, international tournaments, IPL tactics, batting drills, bowling mechanics, and technology analysis."
       />
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10">
-        {/* Header Title */}
+      {/* Transparent SEO & AEO Target Inspector */}
+      <SEOPageBadge />
+
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 space-y-10 mt-4">
+        {/* Header Title with AEO Question & Answer */}
         <div className="space-y-3">
           <div className="inline-flex items-center gap-2 text-xs font-bold text-[var(--cricket-emerald)] tracking-wider uppercase">
             <BookOpen className="w-4 h-4" />
             <span>CricketVerse Publishing Archive</span>
           </div>
           <h1 className="font-heading text-4xl sm:text-5xl lg:text-6xl text-[var(--text-primary)]">
-            All Cricket Blogs
+            Complete Cricket Articles & Tactical Guides
           </h1>
-          <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-2xl leading-relaxed">
-            Explore 12 authoritative, fully researched articles breaking down cricket history, playing rules, legendary player profiles, international tournaments, and technical skills.
+          <h2 className="font-heading text-2xl sm:text-3xl text-[var(--cricket-emerald)]">
+            What Cricket Articles and Tactical Guides Are Available in This Archive?
+          </h2>
+          <p className="text-sm sm:text-base text-[var(--text-secondary)] max-w-3xl leading-relaxed">
+            This comprehensive directory contains 12 authoritative, fully researched cricket articles covering the history of cricket, international match laws, legend biographies, tournament mechanics, batting drills, and bowling science.
           </p>
         </div>
 
@@ -117,7 +128,8 @@ export const AllBlogsPage: React.FC = () => {
                   }
                   setSearchParams(searchParams);
                 }}
-                placeholder="Search by keywords, players, rules, or tournaments..."
+                placeholder="Search cricket blog articles by keywords, players, rules, or tournaments..."
+                aria-label="Search cricket blog articles"
                 className="w-full bg-[var(--bg-elevated)] border border-[var(--border-subtle)] rounded-xl pl-10 pr-10 py-3 text-sm text-[var(--text-primary)] placeholder-[var(--text-muted)] focus:outline-none focus:border-[var(--cricket-emerald)] transition-colors"
               />
               {searchQuery && (
@@ -127,7 +139,8 @@ export const AllBlogsPage: React.FC = () => {
                     searchParams.delete('search');
                     setSearchParams(searchParams);
                   }}
-                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-[var(--text-primary)]"
+                  aria-label="Clear article search query"
+                  className="absolute right-3.5 top-1/2 -translate-y-1/2 text-[var(--text-muted)] hover:text-[var(--text-primary)] cursor-pointer"
                 >
                   <X className="w-4 h-4" />
                 </button>
@@ -143,7 +156,7 @@ export const AllBlogsPage: React.FC = () => {
               <select
                 value={sortBy}
                 onChange={(e) => setSortBy(e.target.value as any)}
-                aria-label="Sort articles"
+                aria-label="Sort cricket articles"
                 className="bg-[var(--bg-elevated)] border border-[var(--border-subtle)] text-xs font-bold text-[var(--text-primary)] rounded-xl px-3 py-3 focus:outline-none focus:border-[var(--cricket-emerald)] cursor-pointer"
               >
                 <option value="latest">Latest Published</option>
@@ -166,7 +179,8 @@ export const AllBlogsPage: React.FC = () => {
                   <button
                     key={cat}
                     onClick={() => handleCategoryChange(cat)}
-                    className={`px-3.5 py-1.5 text-xs font-bold rounded-xl transition-all ${
+                    aria-label={`Filter articles by category: ${cat}`}
+                    className={`px-3.5 py-1.5 text-xs font-bold rounded-xl transition-all cursor-pointer ${
                       isActive
                         ? 'bg-[var(--cricket-emerald)] text-white shadow-md shadow-emerald-600/30'
                         : 'bg-[var(--bg-elevated)] hover:bg-[var(--bg-secondary)] text-[var(--text-secondary)] hover:text-[var(--text-primary)] border border-[var(--border-subtle)]'
@@ -188,7 +202,8 @@ export const AllBlogsPage: React.FC = () => {
             {hasActiveFilters && (
               <button
                 onClick={clearAllFilters}
-                className="text-[var(--cricket-emerald)] hover:underline font-bold flex items-center gap-1 transition-colors"
+                aria-label="Reset all search filters"
+                className="text-[var(--cricket-emerald)] hover:underline font-bold flex items-center gap-1 transition-colors cursor-pointer"
               >
                 <X className="w-3.5 h-3.5" />
                 <span>Reset All Filters</span>
@@ -216,7 +231,8 @@ export const AllBlogsPage: React.FC = () => {
             <div className="pt-2">
               <button
                 onClick={clearAllFilters}
-                className="px-6 py-2.5 bg-[var(--cricket-emerald)] hover:bg-emerald-600 text-white text-xs font-bold rounded-xl transition-colors"
+                aria-label="Clear all active search filters"
+                className="px-6 py-2.5 bg-[var(--cricket-emerald)] hover:bg-emerald-600 text-white text-xs font-bold rounded-xl transition-colors cursor-pointer"
               >
                 Clear All Filters
               </button>

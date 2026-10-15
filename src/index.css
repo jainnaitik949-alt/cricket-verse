@@ -3,57 +3,67 @@
 @layer base {
   :root,
   .dark-theme {
-    --bg-primary: #0B0F19;
-    --bg-secondary: #111827;
-    --bg-card: #151F32;
-    --bg-card-hover: #1C2A44;
-    --bg-elevated: #1F2D48;
+    /* Night Match Stadium Obsidian & Turf Palette */
+    --bg-primary: #060D17;
+    --bg-secondary: #0A1627;
+    --bg-card: #0F2037;
+    --bg-card-hover: #152A47;
+    --bg-elevated: #1A3254;
     
-    --border-subtle: #22324C;
-    --border-accent: rgba(16, 185, 129, 0.4);
+    --border-subtle: #1B3252;
+    --border-accent: rgba(16, 185, 129, 0.45);
+    --border-gold: rgba(245, 158, 11, 0.4);
 
     --text-primary: #FFFFFF;
     --text-secondary: #CBD5E1;
-    --text-muted: #8E9FB5;
+    --text-muted: #94A3B8;
 
     --cricket-emerald: #10B981;
     --cricket-emerald-hover: #059669;
-    --cricket-lime: #84CC16;
-    --cricket-lime-glow: #A3E635;
+    --cricket-emerald-glow: #34D399;
+    --cricket-lime: #22C55E;
+    --cricket-lime-glow: #4ADE80;
     --cricket-gold: #F59E0B;
+    --cricket-gold-hover: #D97706;
     --cricket-ruby: #EF4444;
+    --cricket-cream: #FEF3C7;
 
-    --badge-bg: #1B2942;
-    --glass-bg: rgba(11, 15, 25, 0.88);
+    --badge-bg: #142845;
+    --glass-bg: rgba(6, 13, 23, 0.92);
   }
 
   .light-theme {
+    /* Classic Lords Pavilion Cream & Forest Green */
     --bg-primary: #F8FAFC;
     --bg-secondary: #FFFFFF;
     --bg-card: #FFFFFF;
     --bg-card-hover: #F1F5F9;
-    --bg-elevated: #F8FAFC;
+    --bg-elevated: #E2E8F0;
 
-    --border-subtle: #E2E8F0;
-    --border-accent: rgba(16, 185, 129, 0.5);
+    --border-subtle: #CBD5E1;
+    --border-accent: rgba(5, 150, 105, 0.5);
+    --border-gold: rgba(217, 119, 6, 0.5);
 
-    --text-primary: #0F172A;
+    --text-primary: #0A131F;
     --text-secondary: #334155;
     --text-muted: #64748B;
 
     --cricket-emerald: #059669;
     --cricket-emerald-hover: #047857;
-    --cricket-lime: #65A30D;
-    --cricket-lime-glow: #4D7C0F;
+    --cricket-emerald-glow: #10B981;
+    --cricket-lime: #16A34A;
+    --cricket-lime-glow: #15803D;
     --cricket-gold: #D97706;
+    --cricket-gold-hover: #B45309;
     --cricket-ruby: #DC2626;
+    --cricket-cream: #FFFBEB;
 
     --badge-bg: #E2E8F0;
-    --glass-bg: rgba(255, 255, 255, 0.92);
+    --glass-bg: rgba(255, 255, 255, 0.95);
   }
 
   body {
-    font-family: 'Inter', sans-serif;
+    font-family: 'Inter', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif;
     background-color: var(--bg-primary);
     color: var(--text-primary);
     overflow-x: hidden;
@@ -86,18 +96,26 @@
 .border-theme-accent { border-color: var(--border-accent); }
 
 .text-cricket-emerald { color: var(--cricket-emerald); }
-.text-cricket-lime { color: var(--cricket-lime); }
 .text-cricket-gold { color: var(--cricket-gold); }
+.text-cricket-ruby { color: var(--cricket-ruby); }
 
 .bg-cricket-emerald { background-color: var(--cricket-emerald); }
 .bg-cricket-emerald:hover { background-color: var(--cricket-emerald-hover); }
 
 /* Glow & Lighting accents */
 .stadium-glow-emerald {
-  box-shadow: 0 0 35px -5px rgba(16, 185, 129, 0.25);
+  box-shadow: 0 0 45px -8px rgba(16, 185, 129, 0.35);
 }
 .stadium-glow-gold {
-  box-shadow: 0 0 35px -5px rgba(245, 158, 11, 0.22);
+  box-shadow: 0 0 45px -8px rgba(245, 158, 11, 0.3);
+}
+
+/* Cricket visual motifs */
+.cricket-seam-border {
+  border-top: 2px dashed rgba(239, 68, 68, 0.4);
+}
+.cricket-pitch-strip {
+  background: linear-gradient(90deg, transparent, rgba(16, 185, 129, 0.15), rgba(245, 158, 11, 0.15), transparent);
 }
 
 /* Custom scrollbar */

@@ -86,12 +86,13 @@ export const TournamentCard: React.FC<TournamentCardProps> = ({ tournament }) =>
         </div>
       </div>
 
-      {/* Footer Link */}
+      {/* Footer Link with descriptive anchor text */}
       <div className="pt-5 mt-5 border-t border-[var(--border-subtle)] flex items-center justify-between">
         <span className="text-xs text-[var(--text-muted)]">Verified ICC / League Data</span>
         {tournament.relatedArticleSlug ? (
           <Link
             to={`/blogs/${tournament.relatedArticleSlug}`}
+            aria-label={`Read in-depth tournament guide for ${tournament.name}`}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--cricket-emerald)] hover:text-emerald-400 transition-colors"
           >
             <span>Read In-Depth Guide</span>
@@ -100,6 +101,7 @@ export const TournamentCard: React.FC<TournamentCardProps> = ({ tournament }) =>
         ) : (
           <Link
             to="/blogs"
+            aria-label={`View related articles for ${tournament.name}`}
             className="inline-flex items-center gap-1.5 text-xs font-bold text-[var(--cricket-emerald)] hover:text-emerald-400 transition-colors"
           >
             <span>Related Articles</span>

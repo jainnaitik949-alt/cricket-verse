@@ -7,8 +7,8 @@ export const NotFoundPage: React.FC = () => {
   return (
     <div className="min-h-[70vh] bg-[var(--bg-primary)] text-[var(--text-primary)] flex items-center justify-center px-4 py-16 transition-colors">
       <SEOHead
-        title="404 — Page Not Found"
-        description="The requested page could not be located on CricketVerse."
+        title="404: Cricket Page Not Found | CricketVerse"
+        description="The requested cricket page or article could not be located in the CricketVerse publication directory. Please return to the homepage or browse all articles."
       />
 
       <div className="max-w-md w-full bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-3xl p-8 sm:p-12 text-center space-y-6 shadow-2xl">
@@ -31,6 +31,7 @@ export const NotFoundPage: React.FC = () => {
         <div className="pt-2 flex flex-col sm:flex-row items-center justify-center gap-3">
           <Link
             to="/"
+            aria-label="Return to CricketVerse Home"
             className="w-full sm:w-auto px-5 py-3 bg-[var(--cricket-emerald)] hover:bg-emerald-600 text-white text-xs font-bold rounded-xl flex items-center justify-center gap-2 transition-colors shadow-md"
           >
             <Home className="w-4 h-4" />
@@ -39,6 +40,7 @@ export const NotFoundPage: React.FC = () => {
 
           <Link
             to="/blogs"
+            aria-label="Browse complete archive of 12 cricket articles"
             className="w-full sm:w-auto px-5 py-3 bg-[var(--bg-elevated)] hover:bg-[var(--bg-secondary)] text-[var(--text-primary)] text-xs font-bold rounded-xl border border-[var(--border-subtle)] flex items-center justify-center gap-2 transition-colors"
           >
             <BookOpen className="w-4 h-4 text-[var(--cricket-emerald)]" />

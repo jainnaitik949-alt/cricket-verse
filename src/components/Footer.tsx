@@ -10,11 +10,11 @@ export const Footer: React.FC = () => {
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-5 gap-10 pb-12 border-b border-[var(--border-subtle)]">
           {/* Brand Column */}
           <div className="lg:col-span-2 space-y-4">
-            <Link to="/" className="flex items-center gap-3">
-              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#059669] via-[#10B981] to-[#84CC16] flex items-center justify-center border border-emerald-400/30">
+            <Link to="/" className="flex items-center gap-3 group" aria-label="CricketVerse Home: Every Match. Every Legend. Every Story.">
+              <div className="w-10 h-10 rounded-xl bg-gradient-to-tr from-[#059669] via-[#10B981] to-[#22C55E] flex items-center justify-center border border-emerald-400/30 group-hover:scale-105 transition-transform">
                 <span className="font-heading text-2xl text-white font-extrabold">CV</span>
               </div>
-              <span className="font-heading text-3xl tracking-wider text-[var(--text-primary)]">
+              <span className="font-heading text-3xl tracking-wider text-[var(--text-primary)] group-hover:text-emerald-400 transition-colors">
                 CRICKET<span className="text-[var(--cricket-emerald)]">VERSE</span>
               </span>
             </Link>
@@ -28,7 +28,7 @@ export const Footer: React.FC = () => {
             </div>
           </div>
 
-          {/* Quick Links */}
+          {/* Quick Links with rich descriptive anchor text */}
           <div className="space-y-3">
             <h4 className="font-subheading text-sm uppercase tracking-wider text-[var(--text-primary)] font-bold">
               Explore Cricket
@@ -36,71 +36,71 @@ export const Footer: React.FC = () => {
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/blogs" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  All 12 Articles
+                  All 12 Cricket Articles
                 </Link>
               </li>
               <li>
-                <Link to="/basics" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  Cricket Basics & Rules
+                <Link to="/cricket-basics" className="hover:text-[var(--cricket-emerald)] transition-colors">
+                  Cricket Basics & Rules Guide
                 </Link>
               </li>
               <li>
                 <Link to="/players" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  Player Profiles Directory
+                  Legendary Player Profiles
                 </Link>
               </li>
               <li>
                 <Link to="/tournaments" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  Major Tournaments
+                  International Tournaments
                 </Link>
               </li>
               <li>
-                <Link to="/records" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  Historical Records & Stats
+                <Link to="/cricket-records" className="hover:text-[var(--cricket-emerald)] transition-colors">
+                  Verified Historical Records
                 </Link>
               </li>
               <li>
-                <Link to="/saved" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  Saved Bookmarks
+                <Link to="/saved-articles" className="hover:text-[var(--cricket-emerald)] transition-colors">
+                  Saved Reading List
                 </Link>
               </li>
             </ul>
           </div>
 
-          {/* Categories */}
+          {/* Categories with rich descriptive anchor text */}
           <div className="space-y-3">
             <h4 className="font-subheading text-sm uppercase tracking-wider text-[var(--text-primary)] font-bold">
-              Categories
+              Cricket Categories
             </h4>
             <ul className="space-y-2 text-sm">
               <li>
                 <Link to="/blogs?category=Cricket History" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  Cricket History
+                  Cricket History & Origins
                 </Link>
               </li>
               <li>
                 <Link to="/blogs?category=Legendary Players" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  Legendary Players
+                  Player Biographies
                 </Link>
               </li>
               <li>
                 <Link to="/blogs?category=Cricket Rules and Basics" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  Rules and Basics
+                  Rules and Match Laws
                 </Link>
               </li>
               <li>
                 <Link to="/blogs?category=IPL and T20 Leagues" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  IPL & T20 Leagues
+                  IPL & Franchise Leagues
                 </Link>
               </li>
               <li>
                 <Link to="/blogs?category=Cricket Training and Skills" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  Training & Skills
+                  Batting & Bowling Skills
                 </Link>
               </li>
               <li>
                 <Link to="/blogs?category=Cricket Technology and Analysis" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  Cricket Technology
+                  Technology & DRS Analysis
                 </Link>
               </li>
             </ul>
@@ -113,13 +113,13 @@ export const Footer: React.FC = () => {
             </h4>
             <ul className="space-y-2 text-sm mb-4">
               <li>
-                <Link to="/about" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  About CricketVerse
+                <Link to="/about-us" className="hover:text-[var(--cricket-emerald)] transition-colors">
+                  About CricketVerse Mission
                 </Link>
               </li>
               <li>
                 <Link to="/contact" className="hover:text-[var(--cricket-emerald)] transition-colors">
-                  Editorial Contact
+                  Contact Editorial Team
                 </Link>
               </li>
             </ul>

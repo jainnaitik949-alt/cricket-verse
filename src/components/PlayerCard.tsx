@@ -12,19 +12,20 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, onSelect }) => {
   return (
     <div className="group bg-[var(--bg-card)] border border-[var(--border-subtle)] rounded-2xl overflow-hidden hover:border-[var(--cricket-emerald)] transition-all duration-300 hover:-translate-y-1 hover:shadow-xl flex flex-col justify-between">
       <div>
-        {/* Visual Header */}
+        {/* Visual Header with small size image and descriptive alt text */}
         <div className="relative aspect-[16/10] bg-[var(--bg-secondary)] overflow-hidden">
           <img
             src={player.image}
-            alt={player.name}
+            alt={`Portrait of international cricket player ${player.name} representing ${player.country}`}
             loading="lazy"
+            decoding="async"
             className="w-full h-full object-cover object-top group-hover:scale-105 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-[var(--bg-card)] via-[var(--bg-card)]/40 to-transparent" />
 
           {/* Country flag and role badge */}
           <div className="absolute top-3 left-3 flex items-center gap-2">
-            <span className="text-xl" title={player.country}>
+            <span className="text-xl" title={player.country} role="img" aria-label={player.country}>
               {player.countryFlag}
             </span>
             <span className="text-xs bg-[var(--bg-primary)]/90 text-[var(--cricket-emerald)] px-2.5 py-1 rounded-lg border border-[var(--border-subtle)] font-bold backdrop-blur-sm">
@@ -74,12 +75,13 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, onSelect }) => {
         </div>
       </div>
 
-      {/* Card Actions */}
+      {/* Card Actions with descriptive anchor text */}
       <div className="p-5 pt-0 border-t border-[var(--border-subtle)] mt-2 flex items-center justify-between text-xs">
         {onSelect ? (
           <button
             onClick={() => onSelect(player)}
-            className="w-full mt-3 py-2.5 px-3 bg-[var(--bg-elevated)] hover:bg-[var(--cricket-emerald)] text-[var(--text-primary)] hover:text-white font-bold rounded-xl border border-[var(--border-subtle)] hover:border-transparent transition-all flex items-center justify-center gap-1.5"
+            aria-label={`View full career statistics and biography for ${player.name}`}
+            className="w-full mt-3 py-2.5 px-3 bg-[var(--bg-elevated)] hover:bg-[var(--cricket-emerald)] text-[var(--text-primary)] hover:text-white font-bold rounded-xl border border-[var(--border-subtle)] hover:border-transparent transition-all flex items-center justify-center gap-1.5 cursor-pointer"
           >
             <span>View Full Career Profile</span>
             <ArrowRight className="w-3.5 h-3.5" />
@@ -87,6 +89,7 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, onSelect }) => {
         ) : player.relatedArticleSlug ? (
           <Link
             to={`/blogs/${player.relatedArticleSlug}`}
+            aria-label={`Read dedicated biography article for ${player.name}`}
             className="w-full mt-3 py-2.5 px-3 bg-[var(--bg-elevated)] hover:bg-[var(--cricket-emerald)] text-[var(--text-primary)] hover:text-white font-bold rounded-xl border border-[var(--border-subtle)] hover:border-transparent transition-all flex items-center justify-center gap-1.5"
           >
             <span>Read Biography Article</span>
@@ -94,10 +97,11 @@ export const PlayerCard: React.FC<PlayerCardProps> = ({ player, onSelect }) => {
           </Link>
         ) : (
           <Link
-            to="/records"
+            to="/cricket-records"
+            aria-label={`Explore all-time cricket records related to ${player.name}`}
             className="w-full mt-3 py-2.5 px-3 bg-[var(--bg-elevated)] hover:bg-[var(--cricket-emerald)] text-[var(--text-primary)] hover:text-white font-bold rounded-xl border border-[var(--border-subtle)] hover:border-transparent transition-all flex items-center justify-center gap-1.5"
           >
-            <span>Explore Records</span>
+            <span>Explore All Cricket Records</span>
             <ArrowRight className="w-3.5 h-3.5" />
           </Link>
         )}
